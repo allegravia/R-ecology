@@ -14,7 +14,7 @@ minutes: 30
 #*Installing packages*
 ------------------------------
 
-install.packages
+To install a package you can use install.packages function. Just give it a single parameter being the name of the package you need. Here we try to install RColorBrewer, useful to paint plots.
 
 try to install
 
@@ -28,15 +28,25 @@ Problems? ...sure...
 
 Temporary installation
 
+If you do not have super-user privileges you can use the temporary installation. It will create a temporary folder.
+
         tmp.install.packages("RColorBrewer")
-        #creates a temporary folder
+        
 
 #  Make a Venn Diagrams by command line 
 
                 install.packages('VennDiagram') 
                 library(VennDiagram)
 
-fileA 
+We have three sets of differentially expressed genes from three different comparative analyses. We would like to understand if there are similarities in the experiments. One approach is to use the Venn Diagram.
+
+**Download the data** 
+
+https://www.dropbox.com/s/mfukeigi9z4fhx4/15S_15T_minFDR005_significant.txt?dl=0
+https://www.dropbox.com/s/3aujwbebxkj5qdr/15S_16S_minFDR005_significant.txt?dl=0
+https://www.dropbox.com/s/lfti3d6npocytb6/15S_16T_minFDR005_significant.txt?dl=0
+
+https://www.dropbox.com/s/v6k8bpdxitdjnsh/closer_os_table.txt?dl=0
 ```
 ex_15S_15T = read.table(file="15S_15T_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
 
@@ -44,7 +54,7 @@ ex_15S_16S = read.table(file="15S_16S_minFDR005_significant.txt",sep='\t',head=T
 ex_15S_16T = read.table(file="15S_16T_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
 
 de_ex_15S_16S = ex_15S_16S$Row.names
-d_ex_15S_15T = ex_15S_15T$Row.names
+de_ex_15S_15T = ex_15S_15T$Row.names
 de_ex_15S_16T = ex_15S_16T$Row.names
 
 input<-list(de_ex_15S_16S,de_ex_15S_15T,de_ex_15S_16T)
@@ -52,10 +62,10 @@ input<-list(de_ex_15S_16S,de_ex_15S_15T,de_ex_15S_16T)
 venn<-venn.diagram(input,filename="venn.pdf",category=c("DE 15S_16S","DE 15S_15T","DE 15S_16T"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
 
 ```
-# D ownload the data 
 
+# Make a Venn diagram using a script and R CMD BATCH
 
-# Make a Venn diagram usinag a scipt and R CMD BATCH
+The command to execute an R script from terminal is R CMD BATCH. Just give it the arguments of the program.
 
 [R CMD BATCH](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html)
 
@@ -63,11 +73,11 @@ venn<-venn.diagram(input,filename="venn.pdf",category=c("DE 15S_16S","DE 15S_15T
                 R CMD BATCH --no-save --no-restore  '--args file1.txt file2.txt file3.txt' myscript.R
 
 
-Parameters in input… how to catch?
+To catch parameters in input use args variable:
 
                 args <- commandArgs(trailingOnly = TRUE)
 
-trailingOnly logical. Should only arguments after --args be returned?
+give the three file names in input.
 
 
 ## Challenge - create a bar plot using an R script 
@@ -95,52 +105,39 @@ Suggestions:
 
 4. create an image to save (jpeg)
 
-5. Create a color vector to use to color the bars
-
-6. color_vector <- colorRampPalette(brewer.pal(9,"Set1"),bias=1 )( 20 )
+5. Create a color vector to use to color the bars: color_vector <- colorRampPalette(brewer.pal(9,"Set1"),bias=1 )( 20 )
 
 7. Create the plot (barplot)
 
 8. dev.off
 
+Write a script and run it from command line. give in input: file name, plot name, number of organisms to show.
+
+
+
+
+
+
+....
+
+
+
+....
+
+
 
 
 
 ...
 
-..
-...
-
-.. NON GUARDARE LA SOLUZIONE!!!....
-
-
-...
-.
-..
-.
 
 
 
-
-
-#Aggiungere i nomi sotto il plot
-
-Soluzione: 
-
-1. Names.arg=vettore con i nomi; uso del parametro las
-
-2. salvare lo script
-
-3. eseguire lo script da linea di comando:
-
-
-	sia su mac che su windows potete usare R CMD BATCH 
-
-I seguenti parametri devono essere dati in input: nome del file, intestazione del plot, numero di organismi da mostrare nel plot
+....
 
 
 
-Soluzione:
+Solution
 
 		library(RColorBrewer)
 		args <- commandArgs(trailingOnly = TRUE)
