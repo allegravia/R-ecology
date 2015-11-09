@@ -67,10 +67,17 @@ OUTPUT: a jpg image
 Suggestions:
 
 Store in a table the given input
+
 Create two lists for the two columns 
+
 select the first twenty elements (head)
+
 create an image to save (jpeg)
+
 Create a color vector to use to color the bars
+
 color_vector <- colorRampPalette(brewer.pal(9,"Set1"),bias=1 )( 20 )
+
 Create the plot (barplot)
+
 dev.off
