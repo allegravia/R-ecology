@@ -52,6 +52,8 @@ input<-list(de_ex_15S_16S,de_ex_15S_15T,de_ex_15S_16T)
 venn<-venn.diagram(input,filename="venn.pdf",category=c("DE 15S_16S","DE 15S_15T","DE 15S_16T"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
 
 ```
+# D ownload the data 
+
 
 # Make a Venn diagram usinag a scipt and R CMD BATCH
 
@@ -68,7 +70,9 @@ Parameters in input… how to catch?
 trailingOnly logical. Should only arguments after --args be returned?
 
 
-##And now… try to be independent!
+## Challenge - create a bar plot using an R script 
+
+And now… try to be independent! 
 
 Barplot of biological processes abundances with different colors for each bar. 
 The barplot MUST contain only the top20 scored organisms.
