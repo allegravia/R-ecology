@@ -11,7 +11,7 @@ minutes: 30
 
 
 
-# Installing packages
+## Installing packages
 
 Packages can be installed using the function [`install.packages`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html) with a single argument being the name of the package you need. Here we will install two packages: 
 - [RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/index.html), useful to paint plots
@@ -38,8 +38,10 @@ Similarly, we can install and load `VennDiagram`:
 install.packages('VennDiagram') 
 library(VennDiagram)
 ```
+Take some time to read the [VennDiagram reference manual](https://cran.r-project.org/web/packages/VennDiagram/VennDiagram.pdf) before to start. 
 
-#  Make a venn diagram by command line 
+
+##  Make a venn diagram by command line 
 
 We will use the data from an experiment of differential gene expression analysis. In this type of experiments the sets of gene expressed in two different conditions are compared to identify differences. The result is a list of differentially expressed genes. 
 
@@ -50,48 +52,96 @@ The data we have refer to three comparative analyses and therefore have three li
 Let's download the three lists of differentially expressed genes: 
 
 ```
-download.file("https://www.dropbox.com/s/mfukeigi9z4fhx4/15S_15T_minFDR005_significant.txt?dl=0", "list_1") 
-download.file("https://www.dropbox.com/s/3aujwbebxkj5qdr/15S_16S_minFDR005_significant.txt?dl=0", "list_2")
-download.file("https://www.dropbox.com/s/lfti3d6npocytb6/15S_16T_minFDR005_significant.txt?dl=0", "list_3")
+download.file("https://www.dropbox.com/s/mfukeigi9z4fhx4/15S_15T_minFDR005_significant.txt?dl=0", "file1.txt")
+# comparison between 15S and 15T XXXXXX
+
+download.file("https://www.dropbox.com/s/3aujwbebxkj5qdr/15S_16S_minFDR005_significant.txt?dl=0", "file2.txt")
+download.file("https://www.dropbox.com/s/lfti3d6npocytb6/15S_16T_minFDR005_significant.txt?dl=0", "file3.txt")
 ```
 We will also download XXXXXX 
 
 ```
 https://www.dropbox.com/s/v6k8bpdxitdjnsh/closer_os_table.txt?dl=0
 ```
-Now let's create `data.frames` in the  workspace: 
-
-ex_15S_15T = read.table(file="list_1",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
-
-ex_15S_16S = read.table(file="list_2",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
-
-ex_15S_16T = read.table(file="list_3",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
-
-de_ex_15S_16S = ex_15S_16S$Row.names
-de_ex_15S_15T = ex_15S_15T$Row.names
-de_ex_15S_16T = ex_15S_16T$Row.names
-
-input<-list(de_ex_15S_16S,de_ex_15S_15T,de_ex_15S_16T)
-
-venn<-venn.diagram(input,filename="venn.pdf",category=c("DE 15S_16S","DE 15S_15T","DE 15S_16T"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
+Now let's create three `data.frame` in the  workspace: 
 
 ```
+l1 = read.table(file="file1.txt", sep='\t', head=T,quote='', comment.char='', stringsAsFactors=F)
+l2 = read.table(file="file2.txt", sep='\t', head=T,quote='', comment.char='', stringsAsFactors=F)
+l3 = read.table(file="file3.txt", sep='\t', head=T,quote='', comment.char='', stringsAsFactors=F)
+```
+To give a look at the data.frames and familiarize with their content we can use `str()`: 
 
-# Make a Venn diagram using a script and R CMD BATCH
+```
+str(l1) 
+str(l2) 
+str(l3) 
+```
+All the three data sets have a similar structure and the names of the genes can be read  in the rows names. 
 
-The command to execute an R script from terminal is R CMD BATCH. Just give it the arguments of the program.
+```
+de_l1 = l1$Row.names
+de_l2 = l2$Row.names
+de_l3 = l3$Row.names
+```
+We want to compare the three lists of genes to determine if they overlap:  
 
-[R CMD BATCH](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html)
+```
+input<-list(l1, l2, l3 )
 
-                R CMD BATCH --no-save --no-restore '--args  <parameters>' myscript.R
-                R CMD BATCH --no-save --no-restore  '--args file1.txt file2.txt file3.txt' myscript.R
+venn<-venn.diagram(input,filename="venn.pdf",category=c("DE list1","DE list2","DE list3"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
+
+```
+This last instruction will output a pdf file with the  venn diagram. Look at it? Is there overlap among the lists? 
 
 
-To catch parameters in input use args variable:
+## Make a Venn diagram using a script and R CMD BATCH
 
-                args <- commandArgs(trailingOnly = TRUE)
+Now we will make the same venn diagram but using an R script. This is done in few steps: 
+- **Write the script.** A script is a text file that contains all the instructions to accomplish a task. In this example we want to read the files with the three lists of gene, make a venn diagram and store it in a pdf file. We can use a text editor to write the script and save it in the working directory. The script will look like:  
 
-give the three file names in input.
+```
+#load required packages
+library(VennDiagram) 
+
+# To catch parameters in input use the args variable: when executing the script, all the text after the program name will be stored in this vector and used succesively 
+args <- commandArgs(trailingOnly = TRUE) 
+
+#read the files. Make sure the path of the files is correct, in this specific example the files are in the same folder as the script
+# here is when we use the elements of the args vector that will contain the names of the three input files
+l1 = read.table(file=args[1], sep='\t', head=T, quote='', comment.char='', stringsAsFactors=F) 
+l2 = read.table(file=args[2], sep='\t', head=T, quote='', comment.char='', stringsAsFactors=F)
+l3 = read.table(file=args[3],sep='\t', head=T, quote='', comment.char='', stringsAsFactors=F)
+
+#create the variables that contain the gene lists
+de_l1 = l1$Row.names
+de_l2 = l2$Row.names
+de_l3 = l3$Row.names
+
+ #make an input list for the venn 
+input<-list(l1, l2, l3 )
+
+#make the graph
+venn<-venn.diagram(input,filename="venn.pdf",category=c("DE list1","DE list2","DE list3"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
+
+```
+We use comments to notes what each instruction does. Let's save the script as `makevenndiagram.R`. 
+
+- **Execute the script.** The command to execute an R script from terminal is [R CMD BATCH](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html) followed by the arguments required by the program, if any.
+
+The syntax is usually: 
+
+```
+R CMD BATCH --no-save --no-restore '--args  <parameters>' myscript.R
+```
+The `--no-save` means XXXXX 
+The `--no-restore` indicates XXXXX 
+
+In our case we will type: 
+```
+R CMD BATCH --no-save --no-restore  '--args file1.txt file2.txt file3.txt' makevenndiagram.R
+```
+The three file names are given as inputs.
 
 
 ## Challenge - create a bar plot using an R script 
