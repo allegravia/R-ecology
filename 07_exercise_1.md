@@ -143,3 +143,23 @@ Soluzione:
 		dev.off()
 
 
+And ...what about descriptions?
+
+#Try to add a legend:
+
+
+After the creation of color vector:
+
+--Set the margins of the plot to leave a space on the right
+par(mar = c(2, 2, 2, 50), xpd = NA)
+
+xpd: A logical value or NA. If FALSE, all plotting is clipped to the plot region, if TRUE, all plotting is clipped to the figure region, and if NA, all plotting is clipped to the device region. 
+
+After the barplot:
+--Create the legend
+
+
+legend(legend=descs, bty="n", fill = color_vector, cex=0.9, , x= "right",inset=-2)
+--'x' defines the position respect to the plot and 'inset' define the distance from the margins
+--bty prints a box
+
