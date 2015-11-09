@@ -227,7 +227,7 @@ Solution
 
 And ...what about descriptions?
 
-#Try to add a legend:
+### Add a legend:
 
 
 After the creation of color vector:
