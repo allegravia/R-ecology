@@ -1,3 +1,16 @@
+---
+layout: topic
+title: More on data frames
+author: Data Carpentry contributors
+minutes: 30
+---
+> ## Learning Objectives
+>
+> *   to learn ho to write an R script 
+> *   to learn how to plot Venn diagram 
+
+
+
 #*Installing packages*
 ------------------------------
 
@@ -18,27 +31,31 @@ Temporary installation
         tmp.install.packages("RColorBrewer")
         #creates a temporary folder
 
-##Venn Diagrams 
+#  Make a Venn Diagrams by command line 
 
                 install.packages('VennDiagram') 
                 library(VennDiagram)
 
 fileA 
+```
+ex_15S_15T = read.table(file="15S_15T_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
 
-                ex_15S_15T = read.table(file="15S_15T_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
-                ex_15S_16S = read.table(file="15S_16S_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
-                ex_15S_16T = read.table(file="15S_16T_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
+ex_15S_16S = read.table(file="15S_16S_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
+ex_15S_16T = read.table(file="15S_16T_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
 
-                de_ex_15S_16S = ex_15S_16S$Row.names
-                de_ex_15S_15T = ex_15S_15T$Row.names
-                de_ex_15S_16T = ex_15S_16T$Row.names
+de_ex_15S_16S = ex_15S_16S$Row.names
+d_ex_15S_15T = ex_15S_15T$Row.names
+de_ex_15S_16T = ex_15S_16T$Row.names
 
-                input<-list(de_ex_15S_16S,de_ex_15S_15T,de_ex_15S_16T)
+input<-list(de_ex_15S_16S,de_ex_15S_15T,de_ex_15S_16T)
 
-                venn<-venn.diagram(input,filename="venn.pdf",category=c("DE 15S_16S","DE 15S_15T","DE 15S_16T"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
+venn<-venn.diagram(input,filename="venn.pdf",category=c("DE 15S_16S","DE 15S_15T","DE 15S_16T"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
 
+```
 
-##R CMD BATCH
+# Make a Venn diagram usinag a scipt and R CMD BATCH
+
+[R CMD BATCH](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/BATCH.html)
 
                 R CMD BATCH --no-save --no-restore '--args  <parameters>' myscript.R
                 R CMD BATCH --no-save --no-restore  '--args file1.txt file2.txt file3.txt' myscript.R
