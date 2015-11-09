@@ -13,7 +13,7 @@ minutes: 30
 
 A statistical hypothesis is an assumption about a population parameter. This assumption may or may not be true. Hypothesis testing refers to the formal procedures used by statisticians to accept or reject statistical hypotheses.
 
-## Comparing distribution against a reference value *(Student's *t*-test, Wilcoxon test)*
+## Comparing distribution against a reference value (Student's *t*-test, Shapiro-Wilk test,  Wilcoxon test)
 
 
 One of the animal listed in our survey data is the [white-throated woodrat](http://wildnatureimages.org/sitebuildercontent/sitebuilderpictures/white-throated_woodrat_21738.jpg) (genus:*Neotoma*, species: *albigula*). We know from the literature that in the region where we conducted the survey the average weight of the woodrats is 160g. We want to check if the weight of the woodrats in our survey is comparable to the the data reported in literature.
