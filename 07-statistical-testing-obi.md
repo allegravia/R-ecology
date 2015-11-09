@@ -7,7 +7,8 @@ minutes: 30
 > ## Learning Objectives
 >
 > *   perform basic statistical tests
-
+> ## Requirements
+> *   dplyr
 
 # What is statistical testing?
 
