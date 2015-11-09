@@ -66,18 +66,80 @@ OUTPUT: a jpg image
 
 Suggestions:
 
-Store in a table the given input
+1. Store in a table the given input
 
-Create two lists for the two columns 
+2. Create two lists for the two columns 
 
-select the first twenty elements (head)
+3. select the first twenty elements (head)
 
-create an image to save (jpeg)
+4. create an image to save (jpeg)
 
-Create a color vector to use to color the bars
+5. Create a color vector to use to color the bars
 
-color_vector <- colorRampPalette(brewer.pal(9,"Set1"),bias=1 )( 20 )
+6. color_vector <- colorRampPalette(brewer.pal(9,"Set1"),bias=1 )( 20 )
 
-Create the plot (barplot)
+7. Create the plot (barplot)
 
-dev.off
+8. dev.off
+
+
+
+
+...
+
+..
+...
+
+.. NON GUARDARE LA SOLUZIONE!!!....
+
+
+...
+.
+..
+.
+
+
+
+
+
+#Aggiungere i nomi sotto il plot
+
+Soluzione: 
+
+1. Names.arg=vettore con i nomi; uso del parametro las
+
+2. salvare lo script
+
+3. eseguire lo script da linea di comando:
+
+
+	sia su mac che su windows potete usare R CMD BATCH 
+
+I seguenti parametri devono essere dati in input: nome del file, intestazione del plot, numero di organismi da mostrare nel plot
+
+
+
+Soluzione:
+
+		library(RColorBrewer)
+		args <- commandArgs(trailingOnly = TRUE)
+		
+		--Stores in the matrix the table give in input
+		table <- read.table(args[1], header=TRUE, sep="\t", quote="", stringsAsFactors = FALSE, dec=".")
+		
+		--Creates these two lists for the values
+		values <- head(table$occurrences,20)
+		descs <- head(table$description,20)
+		
+		--creates an image to save
+		jpeg(args[2], width = 1024, height = 768, pointsize = 12, quality= 100, unit = "px") 
+		
+		--Creates a color vector to use to color the bars
+		color_vector <- colorRampPalette(brewer.pal(9,"Set1"),bias=1 )( 20 )
+		--Creates the plot
+		barplot(values, col=color_vector, main=args[3], xlab=args[4], ylab=args[5])
+		
+		--Closes the image
+		dev.off()
+
+
