@@ -49,3 +49,27 @@ Parameters in input… how to catch?
                 args <- commandArgs(trailingOnly = TRUE)
 
 trailingOnly logical. Should only arguments after --args be returned?
+
+
+##And now… try to be independent!
+
+Barplot of biological processes abundances with different colors for each bar. 
+The barplot MUST contain only the top20 scored organisms.
+The plot will contain also a legend with the given organisms names corresponding to colors
+INPUT:  - path of file with data
+	-path of the image to create
+name of the plot
+name of the x axys
+name of the y axys
+
+OUTPUT: a jpg image
+
+Suggestions:
+#Store in a table the given input
+#Create two lists for the two columns 
+#select the first twenty elements (head)
+#create an image to save (jpeg)
+#Create a color vector to use to color the bars
+color_vector <- colorRampPalette(brewer.pal(9,"Set1"),bias=1 )( 20 )
+#Create the plot (barplot)
+#dev.off
