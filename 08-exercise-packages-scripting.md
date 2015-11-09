@@ -1,57 +1,71 @@
 ---
 layout: topic
-title: More on data frames
+title: Learn a simple script in R 
 author: Data Carpentry contributors
 minutes: 30
 ---
 > ## Learning Objectives
->
+> *   to learn ho to install an R package  
 > *   to learn ho to write an R script 
 > *   to learn how to plot Venn diagram 
 
 
 
-#*Installing packages*
-------------------------------
+# Installing packages
 
-To install a package you can use install.packages function. Just give it a single parameter being the name of the package you need. Here we try to install RColorBrewer, useful to paint plots.
+Packages can be installed using the function [`install.packages`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html) with a single argument being the name of the package you need. Here we will install two packages: 
+- [RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/index.html), useful to paint plots
+- [VennDiagram](https://cran.r-project.org/web/packages/VennDiagram/index.html), to make Venn diagrams
 
-try to install
+```
+install.packages("RColorBrewer")
+```
+If the installation is succesful we will be able to load the package in the workspace: 
 
-        install.packages(“RColorBrewer”)
+```
+library(RColorBrewer)
+```
 
-and test installation
+Problems? ...sure! 
+If you do not have super-user privileges you might not be able to install the package, however you can still do a temporary installation that will create a temporary folder: 
 
-        library(RColorBrewer)
+```
+tmp.install.packages("RColorBrewer")
+```        
+Similarly, we can install and load `VennDiagram`: 
 
-Problems? ...sure...
+```
+install.packages('VennDiagram') 
+library(VennDiagram)
+```
 
-Temporary installation
+#  Make a venn diagram by command line 
 
-If you do not have super-user privileges you can use the temporary installation. It will create a temporary folder.
+We will use the data from an experiment of differential gene expression analysis. In this type of experiments the sets of gene expressed in two different conditions are compared to identify differences. The result is a list of differentially expressed genes. 
 
-        tmp.install.packages("RColorBrewer")
-        
+The data we have refer to three comparative analyses and therefore have three lists of differntially expressed genes. We want to understand if there is an overlap among these three lists and one possible approach is to use the Venn Diagram.
 
-#  Make a Venn Diagrams by command line 
+### Download the data 
 
-                install.packages('VennDiagram') 
-                library(VennDiagram)
+Let's download the three lists of differentially expressed genes: 
 
-We have three sets of differentially expressed genes from three different comparative analyses. We would like to understand if there are similarities in the experiments. One approach is to use the Venn Diagram.
+```
+download.file("https://www.dropbox.com/s/mfukeigi9z4fhx4/15S_15T_minFDR005_significant.txt?dl=0", "list_1") 
+download.file("https://www.dropbox.com/s/3aujwbebxkj5qdr/15S_16S_minFDR005_significant.txt?dl=0", "list_2")
+download.file("https://www.dropbox.com/s/lfti3d6npocytb6/15S_16T_minFDR005_significant.txt?dl=0", "list_3")
+```
+We will also download XXXXXX 
 
-**Download the data** 
-
-https://www.dropbox.com/s/mfukeigi9z4fhx4/15S_15T_minFDR005_significant.txt?dl=0
-https://www.dropbox.com/s/3aujwbebxkj5qdr/15S_16S_minFDR005_significant.txt?dl=0
-https://www.dropbox.com/s/lfti3d6npocytb6/15S_16T_minFDR005_significant.txt?dl=0
-
+```
 https://www.dropbox.com/s/v6k8bpdxitdjnsh/closer_os_table.txt?dl=0
 ```
-ex_15S_15T = read.table(file="15S_15T_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
+Now let's create `data.frames` in the  workspace: 
 
-ex_15S_16S = read.table(file="15S_16S_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
-ex_15S_16T = read.table(file="15S_16T_minFDR005_significant.txt",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
+ex_15S_15T = read.table(file="list_1",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
+
+ex_15S_16S = read.table(file="list_2",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
+
+ex_15S_16T = read.table(file="list_3",sep='\t',head=T,quote='',comment.char='',stringsAsFactors=F)
 
 de_ex_15S_16S = ex_15S_16S$Row.names
 de_ex_15S_15T = ex_15S_15T$Row.names
