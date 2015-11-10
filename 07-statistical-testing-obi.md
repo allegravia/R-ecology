@@ -24,7 +24,7 @@ First step is to create a vector containing all the weights of the woodrats in t
 ```
 library(dplyr)
 
-surveys <- read.csv("http://files.figshare.com/1919744/surveys.csv")
+surveys <- read.csv("http://files.figshare.com/2236372/combined.csv")
 
 mysubset <-  surveys %>% filter(genus=="Neotoma", species=="albigula") %>% select(weight)
 
