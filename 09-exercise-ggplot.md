@@ -1,6 +1,6 @@
 ---
 layout: topic
-title: learn how to use ggplot
+title: learn how to plot data based on geographical coordinates 
 author: Data Carpentry contributors
 minutes: 30
 ---
@@ -13,7 +13,7 @@ For this exercise we will download a mock and tiny dataset from this link:
 https://drive.google.com/open?id=0B-jyStUL6NDbcklLYmdONllVdTA
 
 Open the file with a text editor first and look at its structure. 
-The data set refers to a survey to investigate the origin of  students in an R course
+The data set refers to a survey to investigate the origin of students in an R course
 
 | Column      | Description               |
 |-------------|---------------------------|
@@ -33,15 +33,15 @@ library(ggplot2)
 library(graphics)
 ```
 
-*Note that to load packages we use sometime `require` and sometime `load`. The two options are pretty much equivalent, however require is used inside functions, as it outputs a warning and continues if the package is not found, whereas library will throw an error.*
+*Note that to load packages we use both `require` and `load`. The two options are pretty much equivalent, however require is used inside functions, as it outputs a warning and continues if the package is not found, whereas library will throw an error.*
 
-Beside `ggplt2` there are othre required packages:  
+Beside `ggplt2` there are other required packages:  
 
 - [rworldmap](https://cran.r-project.org/web/packages/rworldmap/index.html) 
 - [rworldextra](https://cran.r-project.org/web/packages/rworldmap/index.html)
 - [scales](https://cran.r-project.org/web/packages/scales/index.html)
 
-Take some time to chek the functions of these packages, when ready let's start by loading the file in the workspace using `read.table`.
+Take some time to check the functions of these packages. When ready load the data file in the workspace using `read.table`.
 
 ```
 d <- read.table("nations_capitols.txt", header=T,sep="\t")
