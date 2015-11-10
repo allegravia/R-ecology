@@ -53,8 +53,6 @@ Let's download the three lists of differentially expressed genes:
 
 ```
 download.file("http://figshare.com/download/file/2433882", "file1.txt")
-# comparison between 15S and 15T XXXXXX
-
 download.file("http://figshare.com/download/file/2433881", "file2.txt")
 download.file("http://figshare.com/download/file/2433880", "file3.txt")
 ```
