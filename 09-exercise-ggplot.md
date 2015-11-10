@@ -38,7 +38,7 @@ library(graphics)
 Beside `ggplt2` there are other required packages:  
 
 - [rworldmap](https://cran.r-project.org/web/packages/rworldmap/index.html) 
-- [rworldextra](https://cran.r-project.org/web/packages/rworldmap/index.html)
+- [rworldxtra](https://cran.r-project.org/web/packages/rworldmap/index.html)
 - [scales](https://cran.r-project.org/web/packages/scales/index.html)
 
 Take some time to check the functions of these packages. When ready load the data file in the workspace using `read.table`.
