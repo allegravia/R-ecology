@@ -52,17 +52,13 @@ The data we have refer to three comparative analyses and therefore have three li
 Let's download the three lists of differentially expressed genes: 
 
 ```
-download.file("https://www.dropbox.com/s/mfukeigi9z4fhx4/15S_15T_minFDR005_significant.txt?dl=0", "file1.txt")
+download.file("http://figshare.com/download/file/2433882", "file1.txt")
 # comparison between 15S and 15T XXXXXX
 
-download.file("https://www.dropbox.com/s/3aujwbebxkj5qdr/15S_16S_minFDR005_significant.txt?dl=0", "file2.txt")
-download.file("https://www.dropbox.com/s/lfti3d6npocytb6/15S_16T_minFDR005_significant.txt?dl=0", "file3.txt")
+download.file("http://figshare.com/download/file/2433881", "file2.txt")
+download.file("http://figshare.com/download/file/2433880", "file3.txt")
 ```
-We will also download XXXXXX 
 
-```
-https://www.dropbox.com/s/v6k8bpdxitdjnsh/closer_os_table.txt?dl=0
-```
 Now let's create three `data.frame` in the  workspace: 
 
 ```
@@ -158,6 +154,12 @@ name of the x axys
 name of the y axys
 
 OUTPUT: a jpg image
+
+We will download a file containing organisms name associated to a certain annotation of a non-model organism. 
+
+```
+download.file("http://figshare.com/download/file/2433883, "organisms.txt")
+```
 
 Suggestions:
 
