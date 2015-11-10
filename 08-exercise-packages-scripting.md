@@ -101,8 +101,8 @@ library(VennDiagram)
 # To catch parameters in input use the args variable: when executing the script, all the text after the program name will be stored in this vector and used succesively 
 args <- commandArgs(trailingOnly = TRUE) 
 
-#read the files. Make sure the path of the files is correct, in this specific example the files are in the same folder as the script
-# here is when we use the elements of the args vector that will contain the names of the three input files
+#read the files using read.table
+#input files are stored as elements of the args vector and be passed to the read.table functions 
 l1 = read.table(file=args[1], sep='\t', head=T, quote='', comment.char='', stringsAsFactors=F) 
 l2 = read.table(file=args[2], sep='\t', head=T, quote='', comment.char='', stringsAsFactors=F)
 l3 = read.table(file=args[3],sep='\t', head=T, quote='', comment.char='', stringsAsFactors=F)
@@ -116,7 +116,7 @@ de_l3 = l3$Row.names
 input<-list(l1, l2, l3 )
 
 #make the graph
-venn<-venn.diagram(input,filename="venn.pdf",category=c("DE list1","DE list2","DE list3"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
+venn.diagram(input,filename="venn.pdf",category=c("DE list1","DE list2","DE list3"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
 
 ```
 We use comments to notes what each instruction does. Let's save the script as `makevenndiagram.R`. 
