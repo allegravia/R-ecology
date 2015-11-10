@@ -10,7 +10,7 @@ minutes: 30
 ### Download the data
 
 For this exercise we will download a mock and tiny dataset from this link: 
-https://drive.google.com/open?id=0B-jyStUL6NDbcklLYmdONllVdTA
+http://figshare.com/download/file/2433888
 
 Open the file with a text editor first and look at its structure. 
 The data set refers to a survey to investigate the origin of students in an R course
@@ -52,7 +52,7 @@ Now create a graphics device for a .png file with the function `png()`. The firs
 png("nations.png", res =300, units="cm", width = 40, height = 20)
 ```
 
-We now get a world map using the function `getMap`  and XXXXX using the function `fortify`:  
+We now get a world map using the function `getMap` and transform the data in a R readable format using the function `fortify`:  
 
 ```
 world<-getMap(resolution = "high")  
@@ -93,10 +93,10 @@ m1<-ggplot() +
           legend.title=element_text(size=20, face=1),
           legend.text=element_text(size=20))+
 
-#XXXXXXXX  
+#to regulate the scale og the points we establish a range of point dimensions (from 1 to 12)
   scale_size_continuous(range = c(1, 12),name="numerosity") +
 
-#XXXXXX
+#turn off the legend of the coloure parameter (only the size will be shown) 
   guides(colour =F)
 ```
 Finally the following instruction closes the graphical device we created with `png()`:  
