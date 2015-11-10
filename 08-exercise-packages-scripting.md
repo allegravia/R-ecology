@@ -13,31 +13,25 @@ minutes: 30
 
 ## Installing packages
 
-Packages can be installed using the function [`install.packages`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html) with a single argument being the name of the package you need. Here we will install two packages: 
-- [RColorBrewer](https://cran.r-project.org/web/packages/RColorBrewer/index.html), useful to paint plots
+Packages can be installed using the function [`install.packages`](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/install.packages.html) with a single argument being the name of the package you need. Here we will install one package: 
 - [VennDiagram](https://cran.r-project.org/web/packages/VennDiagram/index.html), to make Venn diagrams
 
 ```
-install.packages("RColorBrewer")
+install.packages("VennDiagram")
 ```
 If the installation is succesful we will be able to load the package in the workspace: 
 
 ```
-library(RColorBrewer)
+library(VennDiagram)
 ```
 
 Problems? ...sure! 
 If you do not have super-user privileges you might not be able to install the package, however you can still do a temporary installation that will create a temporary folder: 
 
 ```
-tmp.install.packages("RColorBrewer")
+tmp.install.packages("VennDiagram")
 ```        
-Similarly, we can install and load `VennDiagram`: 
 
-```
-install.packages('VennDiagram') 
-library(VennDiagram)
-```
 Take some time to read the [VennDiagram reference manual](https://cran.r-project.org/web/packages/VennDiagram/VennDiagram.pdf) before to start. 
 
 
@@ -128,8 +122,8 @@ The syntax is usually:
 ```
 R CMD BATCH --no-save --no-restore '--args  <parameters>' myscript.R
 ```
-The `--no-save` means XXXXX 
-The `--no-restore` indicates XXXXX 
+The `--no-save` means the workspace will not be saved 
+The `--no-restore` indicates a workspace will not be loaded 
 
 In our case we will type: 
 ```
@@ -203,7 +197,6 @@ Write a script and run it from command line. give in input: file name, plot name
 
 Solution
 
-		library(RColorBrewer)
 		args <- commandArgs(trailingOnly = TRUE)
 		
 		--Stores in the matrix the table give in input
@@ -217,7 +210,7 @@ Solution
 		jpeg(args[2], width = 1024, height = 768, pointsize = 12, quality= 100, unit = "px") 
 		
 		--Creates a color vector to use to color the bars
-		color_vector <- colorRampPalette(brewer.pal(9,"Set1"),bias=1 )( 20 )
+		color_vector <- rainbow( 20 )
 		--Creates the plot
 		barplot(values, col=color_vector, main=args[3], xlab=args[4], ylab=args[5])
 		
