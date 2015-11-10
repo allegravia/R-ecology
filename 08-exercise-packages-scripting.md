@@ -75,7 +75,7 @@ de_l3 = l3$Row.names
 We want to compare the three lists of genes to determine if they overlap:  
 
 ```
-input<-list(l1, l2, l3 )
+input<-list(de_l1, de_l2, de_l3 )
 
 venn<-venn.diagram(input,filename="venn.pdf",category=c("DE list1","DE list2","DE list3"), col = "transparent",fill=c("cornflowerblue", "green", "yellow"))
 
