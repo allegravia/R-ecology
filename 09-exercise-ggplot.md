@@ -59,7 +59,7 @@ world<-getMap(resolution = "high")
 worldfor<-fortify(world)
 ```
 
-Let's choose colors to use in the plot and define the variables lon and lat: 
+Choose colors to use in the plot and define the variables lon and lat: 
 
 ```
 colpal<-palette(rainbow(25))
