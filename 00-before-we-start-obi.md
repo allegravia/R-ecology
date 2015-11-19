@@ -20,7 +20,7 @@ minutes: 30
 # Before we get started
 
 ## What is R?
-
+ALLEGRA
 R is a free language and environment for statistical computing and graphics. You can search all information about [R on the R project website](http://www.R-project.org)
 
 R system contains two major components:
