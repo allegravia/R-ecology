@@ -39,7 +39,6 @@ If you are using a computer with Windows, launch the application from the deskto
 
 In all cases you will see something like this:
 
-ADD IMAGE
 ```
 R version 2.15.2 (2012-10-26) -- "Trick or Treat"
 Copyright (C) 2012 The R Foundation for Statistical Computing
@@ -93,7 +92,6 @@ To learn in which part of the machine you are use the command `getwd()`
 
 ```
 >getwd()
-> getwd()
 [1] "/home/username/userfolder"
 >
 ```
@@ -235,7 +233,6 @@ We can use another function `args()`:
 
 ```
 >args(round)
-> args(round)
 function (x, digits = 0)
 NULL
 >
@@ -261,11 +258,11 @@ type `digits=2` or however many we want.
 If you provide the arguments in the exact same order as they are defined you don't have to name them:
 
 ```
->round(3.14159, digits=2)
+>round(3.14159, 2)
 ```
 
 However, it's usually not recommended practice because it's a lot of remembering
-to do, and if you share your code with others that includes less known functions
+to do, and if you share your code with others that include less known functions
 it makes your code difficult to read. (It's however OK to not include the names
 of the arguments for basic functions like `mean`, `min`, etc...)
 
