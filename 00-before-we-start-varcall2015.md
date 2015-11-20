@@ -5,7 +5,6 @@ author: Data Carpentry contributors
 minutes: 30
 ---
 
-ALLEGRA
 ------------
 
 > ## Learning Objectives
